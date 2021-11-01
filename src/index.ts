@@ -3,7 +3,7 @@ import { errorHandler, traverse } from "./utils"
 export const sort = <TObjectArray extends Record<string, unknown>>(
   objectArray: TObjectArray[],
   key: keyof TObjectArray,
-  ascending?: boolean
+  ascending = true
 ): TObjectArray[] => {
   const field = key as string
 
@@ -19,35 +19,9 @@ export const sort = <TObjectArray extends Record<string, unknown>>(
       typeof curr
     )
 
-    console.log(prev, curr)
-
     if (ascending) return prev > curr ? 1 : -1
     return prev > curr ? -1 : 1
   })
 
   return sortedArray
 }
-
-const a = sort(
-  [
-    {
-      id: 1,
-      name: "first"
-    },
-    {
-      id: 2,
-      name: "second"
-    },
-    {
-      id: 3,
-      name: "third"
-    },
-    {
-      id: 4,
-      name: "fourth"
-    }
-  ],
-  "name"
-)
-
-console.log(a)

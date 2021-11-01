@@ -84,42 +84,15 @@ test("Sort with a number type", () => {
 
 test("Sort with a nested object", () => {
   const newExample = example.map(object => {
-    const objectWithMore: typeof object & { more: boolean } = {
+    const objectWithMore: typeof object & { more: { id: number } } = {
       ...object,
-      more: false
+      more: {
+        id: object.id
+      }
     }
 
     return objectWithMore
   })
 
-  expect(sort(newExample, "more")).toEqual([
-    {
-      id: 1,
-      name: "first",
-      more: {
-        id: 1
-      }
-    },
-    {
-      id: 2,
-      name: "second",
-      more: {
-        id: 2
-      }
-    },
-    {
-      id: 3,
-      name: "third",
-      more: {
-        id: 3
-      }
-    },
-    {
-      id: 4,
-      name: "fourth",
-      more: {
-        id: 4
-      }
-    }
-  ])
+  expect(() => sort(newExample, "more")).toThrow(TypeError)
 })

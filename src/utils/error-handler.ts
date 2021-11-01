@@ -13,8 +13,10 @@ export const errorHandler = (
     const expectedTypesInSentence =
       expectedTypesCopy.join(", ") + ` and ${lastType}`
 
+    const valueTypes = typeofValueA === typeofValueB ? typeofValueA : ""
+
     throw new TypeError(
-      `Expected ${expectedTypesInSentence}. But got ${typeofValueA} and ${typeofValueB}\n instead.`
+      `Can't sort with ${valueTypes}. Only ${expectedTypesInSentence} are accepted`
     )
   }
 }
