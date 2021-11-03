@@ -3,19 +3,34 @@ import { sort } from "../index"
 const example = [
   {
     id: 1,
-    name: "first"
+    name: null
   },
   {
     id: 2,
-    name: "second"
+    name: "first"
   },
   {
     id: 3,
-    name: "third"
+    name: "second"
   },
   {
     id: 4,
-    name: "fourth"
+    name: "second"
+  },
+  {
+    id: 5,
+    name: "Third"
+  },
+  {
+    id: 6,
+    name: "Fourth"
+  },
+  {
+    id: 7,
+    name: null
+  },
+  {
+    id: 8
   }
 ]
 
@@ -27,7 +42,7 @@ test("Sort by name in ascending order", () => {
     },
     {
       id: 4,
-      name: "fourth"
+      name: "Fourth"
     },
     {
       id: 2,
@@ -35,7 +50,7 @@ test("Sort by name in ascending order", () => {
     },
     {
       id: 3,
-      name: "third"
+      name: "Third"
     }
   ])
 })
@@ -44,7 +59,7 @@ test("Sort by name in descending order", () => {
   expect(sort(example, "name", false)).toEqual([
     {
       id: 3,
-      name: "third"
+      name: "Third"
     },
     {
       id: 2,
@@ -52,7 +67,7 @@ test("Sort by name in descending order", () => {
     },
     {
       id: 4,
-      name: "fourth"
+      name: "Fourth"
     },
     {
       id: 1,
@@ -73,11 +88,11 @@ test("Sort with a number type", () => {
     },
     {
       id: 3,
-      name: "third"
+      name: "Third"
     },
     {
       id: 4,
-      name: "fourth"
+      name: "Fourth"
     }
   ])
 })

@@ -1,4 +1,4 @@
-import { errorHandler, traverse } from "./utils"
+import { traverse } from "./utils"
 
 export const sort = <TObjectArray extends Record<string, unknown>>(
   objectArray: TObjectArray[],
@@ -13,14 +13,11 @@ export const sort = <TObjectArray extends Record<string, unknown>>(
   const sortedArray = arrayCopy.sort((a, b) => {
     const [prev, curr] = [traverse(a, field), traverse(b, field)]
 
-    errorHandler(
-      ["string", "number", "bigint", "boolean"],
-      typeof prev,
-      typeof curr
-    )
+    const valueA = typeof prev === "string" ? prev.toLowerCase() : prev
+    const valueB = typeof curr === "string" ? curr.toLowerCase() : curr
 
-    if (ascending) return prev > curr ? 1 : -1
-    return prev > curr ? -1 : 1
+    if (ascending) return valueA > valueB ? 1 : -1
+    return valueA > valueB ? -1 : 1
   })
 
   return sortedArray
